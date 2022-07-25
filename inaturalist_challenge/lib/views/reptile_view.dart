@@ -5,20 +5,18 @@ import 'dart:convert';
 import 'package:inaturalist_challenge/services/spiders_call.dart';
 import 'package:inaturalist_challenge/views/random_view.dart';
 
-import 'reptile_view.dart';
-
 // final call = INatCalls();
 // late Map mapResponse;
 // late List listOfResults;
 
-class SpiderView extends StatefulWidget {
-  const SpiderView({Key? key}) : super(key: key);
+class ReptileView extends StatefulWidget {
+  const ReptileView({Key? key}) : super(key: key);
 
   @override
-  State<SpiderView> createState() => _SpiderViewState();
+  State<ReptileView> createState() => _ReptileViewState();
 }
 
-class _SpiderViewState extends State<SpiderView> {
+class _ReptileViewState extends State<ReptileView> {
   late Map mapResponse;
   late List listOfResults;
 
@@ -38,7 +36,7 @@ class _SpiderViewState extends State<SpiderView> {
     //     Uri.parse('https://api.inaturalist.org/v1/observations/127458555');
     // BERMUDA SPIDERS 2022 URI
     var url = Uri.parse(
-        'https://api.inaturalist.org/v1/observations?photos=true&place_id=8638&year=2022&iconic_taxa=Arachnida&quality_grade=research&order=desc&order_by=created_at');
+        'https://api.inaturalist.org/v1/observations?photos=true&place_id=8638&year=2022&iconic_taxa=Reptilia&quality_grade=research&order=desc&order_by=created_at');
 
     response = await http.get(url);
     // print('Response status: ${response.statusCode}');
@@ -55,8 +53,7 @@ class _SpiderViewState extends State<SpiderView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: const Text('Spiders of Bermuda'),
+        title: const Text('Reptiles of Bermuda'),
       ),
       body: Center(
           child: SingleChildScrollView(
@@ -65,23 +62,6 @@ class _SpiderViewState extends State<SpiderView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           // mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                TextButton(
-                  onPressed: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ReptileView())),
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.black),
-                  ),
-                  child: const Text('Reptiles',
-                      style: TextStyle(color: Colors.white)),
-                )
-              ],
-            ),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
             Text(
               "Total Observed in 2022: ${mapResponse['total_results'].toString()}",
               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:inaturalist_challenge/net/spiders_call.dart';
+import 'package:inaturalist_challenge/services/spiders_call.dart';
 import 'package:inaturalist_challenge/views/spider_view.dart';
 
 // final call = INatCalls();
