@@ -4,10 +4,13 @@ import 'dart:convert';
 
 // import 'package:inaturalist_challenge/widgets/spider_body.dart';
 import './views/spider_view.dart';
+import 'views/home_view.dart';
 
 void main() {
   runApp(const MaterialApp(
-    home: SpiderView(),
+    home: Home(),
     debugShowCheckedModeBanner: false,
   ));
 }
+
+

@@ -14,7 +14,7 @@ import 'package:inaturalist_challenge/views/spider_view.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const SpiderView());
+    await tester.pumpWidget(SpiderView());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
