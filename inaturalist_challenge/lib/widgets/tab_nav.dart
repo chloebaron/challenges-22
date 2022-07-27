@@ -1,25 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:inaturalist_challenge/services/calls.dart';
 import 'package:inaturalist_challenge/views/project_view.dart';
-import 'package:inaturalist_challenge/views/reptile_view.dart';
-import 'package:inaturalist_challenge/views/spider_view.dart';
+import 'package:inaturalist_challenge/views/introduced_view.dart';
+import 'package:inaturalist_challenge/views/endemic_view.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class TabNav extends StatefulWidget {
+  const TabNav({Key? key}) : super(key: key);
   @override
-  State<Home> createState() => _HomeState();
+  State<TabNav> createState() => _TabNavState();
 }
 
-class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+class _TabNavState extends State<TabNav> with SingleTickerProviderStateMixin {
   static const List<Tab> myTabs = <Tab>[
-    Tab(text: 'Home'),
-    Tab(text: 'Spiders'),
-    Tab(text: 'Reptiles'),
+    Tab(text: 'Projects'),
+    Tab(text: 'Endemic'),
+    Tab(text: 'Introduced'),
+    // Tab(text: 'Native'),
   ];
 
   late TabController _tabController;
 
   @override
   void initState() {
+    getEndemics();
+    getIntroduced();
+    getProjects();
     super.initState();
     _tabController = TabController(vsync: this, length: myTabs.length);
   }
@@ -44,8 +49,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       ),
       body: TabBarView(controller: _tabController, children: const [
         ProjectView(),
-        SpiderView(),
-        ReptileView(),
+        EndemicView(),
+        IntroducedView(),
       ]),
     );
   }
