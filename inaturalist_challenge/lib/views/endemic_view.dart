@@ -43,46 +43,52 @@ class _EndemicViewState extends State<EndemicView> {
                       style: const TextStyle(
                           fontSize: 18, fontWeight: FontWeight.bold),
                     ),
+                    FutureBuilder(
+                        future: getEndemics(),
+                        builder: (context, snapshot) {
+                          return ListView.builder(
+                            itemCount: listOfEndemics.length,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return listOfEndemics[index]['species_guess'] ==
+                                      null
+                                  ? Container()
+                                  : Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10),
+                                      // height: 100,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          // Image.network(listOfEndemics[index]['images']['url']),
+                                          Text(
+                                              "Common Name: ${listOfEndemics[index]['species_guess']}",
+                                              style: const TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold)),
 
-                    //CHANGE THIS TO LIST BUILDER
-                    ListView.builder(
-                      itemCount: listOfEndemics.length,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return listOfEndemics[index]['species_guess'] == null
-                            ? Container()
-                            : Container(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 10),
-                                // height: 100,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    // Image.network(listOfEndemics[index]['images']['url']),
-                                    Text(
-                                        "Common Name: ${listOfEndemics[index]['species_guess']}",
-                                        style: const TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold)),
+                                          Text(
+                                              "Species Name: ${listOfEndemics[index]['taxon']['name']}",
+                                              style: const TextStyle(
+                                                  fontSize: 16,
+                                                  fontStyle: FontStyle.italic)),
 
-                                    Text(
-                                        "Species Name: ${listOfEndemics[index]['taxon']['name']}",
-                                        style: const TextStyle(
-                                            fontSize: 16,
-                                            fontStyle: FontStyle.italic)),
+                                          Text(
+                                              "Species ID: ${listOfEndemics[index]['id']}",
+                                              style: const TextStyle(
+                                                  fontSize: 16)),
 
-                                    Text(
-                                        "Species ID: ${listOfEndemics[index]['id']}",
-                                        style: const TextStyle(fontSize: 16)),
-
-                                    Text(
-                                        "Date Observed ${listOfEndemics[index]['observed_on_details']['date']}",
-                                        style: const TextStyle(fontSize: 16)),
-                                  ],
-                                ),
-                              );
-                      },
-                    )
+                                          Text(
+                                              "Date Observed ${listOfEndemics[index]['observed_on_details']['date']}",
+                                              style: const TextStyle(
+                                                  fontSize: 16)),
+                                        ],
+                                      ),
+                                    );
+                            },
+                          );
+                        }),
                   ],
                 ),
               ),
