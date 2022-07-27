@@ -14,19 +14,10 @@ class ProjectView extends StatefulWidget {
 
 class _ProjectViewState extends State<ProjectView> {
   @override
-  // void initState() {
-  //   setState(() {
-  //     getProjects();
-  //     super.initState();
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
-    return
-        // projectsResponse['results'] == null
-        //     ? Container()
-        //     :
+    return 
         Scaffold(
       body: SingleChildScrollView(
         child: Padding(

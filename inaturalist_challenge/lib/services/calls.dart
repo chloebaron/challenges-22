@@ -5,6 +5,7 @@ import 'dart:convert';
 
 import '../models/spider_model.dart';
 
+// Empty variables to store the responses to be used in the views
 Map endemicsResponse = {};
 List listOfEndemics = [];
 
@@ -14,11 +15,12 @@ List listOfIntroduced = [];
 Map projectsResponse = {};
 List listOfProjects = [];
 
-// class INatCalls {
+// Calls to iNaturalist API to fetch endemic species
+// Each call has the same functions with their own code
 Future<List> getEndemics() async {
   final http.Response response;
 
-  // Endemic Species observed in 2022, all grades
+  // Query is Endemic Species observed in 2022, all grades
   var url = Uri.parse(
       'https://api.inaturalist.org/v1/observations?endemic=true&place_id=8638&month=7&year=2022&iconic_taxa=Plantae&order=desc&order_by=created_at');
 
@@ -27,11 +29,10 @@ Future<List> getEndemics() async {
   // If the server did return a 200 OK response,
   // then parse the JSON
   if (response.statusCode == 200) {
-    // setState(() {
+    // Stores response in a Map
     endemicsResponse = json.decode(response.body);
-    // Spider.fromJson(jsonDecode(response.body));
+    // Stores the 'results' list in a list to be displayed
     return listOfEndemics = endemicsResponse['results'];
-    // return Spider.fromJson(jsonDecode(response.body));
   } else {
     throw Exception('Failed to load Spider information');
   }
@@ -49,11 +50,8 @@ Future<List> getIntroduced() async {
   // If the server did return a 200 OK response,
   // then parse the JSON
   if (response.statusCode == 200) {
-    // setState(() {
     introducedResponse = json.decode(response.body);
-    // Spider.fromJson(jsonDecode(response.body));
     return listOfIntroduced = introducedResponse['results'];
-    // return Spider.fromJson(jsonDecode(response.body));
   } else {
     throw Exception('Failed to load Reptile information');
   }
@@ -63,7 +61,7 @@ Future<List> getIntroduced() async {
 Future<List> getProjects() async {
   http.Response response;
 
-  // BERMUDA PROJECTS 2022 URI
+  // Bermuda based projects
   var url = Uri.parse(
       'https://api.inaturalist.org/v1/projects?q=bermuda&order_by=recent_posts');
 
@@ -72,11 +70,8 @@ Future<List> getProjects() async {
   response = await http.get(url);
 
   if (response.statusCode == 200) {
-    // setState(() {
     projectsResponse = json.decode(response.body);
-    // Spider.fromJson(jsonDecode(response.body));
     return listOfProjects = projectsResponse['results'];
-    // return Spider.fromJson(jsonDecode(response.body));
   } else {
     throw Exception('Failed to load Reptile information');
   }

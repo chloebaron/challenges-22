@@ -10,19 +10,12 @@ class EndemicView extends StatefulWidget {
   State<EndemicView> createState() => _EndemicViewState();
 }
 
+// Stateful widget used
+
 class _EndemicViewState extends State<EndemicView> {
-  // late Future<List> futureEndemic;
-
-  // @override
-  // void initState() {
-  //   setState(() {
-  //     // futureEndemic = getEndemics();
-  //   });
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
+    // If the response has no data, the screen loads an empty container rather than showing an error
     return endemicsResponse['results'] == null
         ? Container()
         : Scaffold(
