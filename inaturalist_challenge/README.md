@@ -1,16 +1,13 @@
 # inaturalist_challenge
 
-A new Flutter project.
+Basic project that fetches data from the iNaturalist API and displays to the user. The project is built using Flutter and Dart. Built for viewing as a Web App, however, can be viewed as a Mobile App althogh the scrolling is buggy at the moment. 
+https://api.inaturalist.org/v1/docs/
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Flutter Installation Guide
+https://docs.flutter.dev/get-started/install/macos
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Open inaturalist_challenge folder in IDE. 
+- If using Visual Studio, select Run > Choose Chrome 
+- Otherwise, the commandline prompt is ' flutter run -d chrome '
