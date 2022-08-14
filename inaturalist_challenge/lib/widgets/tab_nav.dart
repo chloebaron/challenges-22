@@ -4,6 +4,7 @@ import 'package:inaturalist_challenge/views/about.dart';
 import 'package:inaturalist_challenge/views/project_view.dart';
 import 'package:inaturalist_challenge/views/introduced_view.dart';
 import 'package:inaturalist_challenge/views/endemic_view.dart';
+import 'package:inaturalist_challenge/widgets/search_widget.dart';
 
 class TabNav extends StatefulWidget {
   const TabNav({Key? key}) : super(key: key);
@@ -55,9 +56,10 @@ class _TabNavState extends State<TabNav> with SingleTickerProviderStateMixin {
             tabs: myTabs,
           ),
         ),
-        body: TabBarView(controller: _tabController, children: const [
-          // AboutView(),
-          ProjectView(),
+        body: TabBarView(controller: _tabController, children: [
+          // COMMENTED TO TEST SEARCH TAB
+          // ProjectView(),
+          ProjectsSearch(),
           EndemicView(),
           IntroducedView(),
         ]),

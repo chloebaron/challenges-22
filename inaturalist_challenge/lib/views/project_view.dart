@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:inaturalist_challenge/services/calls.dart';
 import 'package:inaturalist_challenge/views/endemic_view.dart';
+import 'package:inaturalist_challenge/widgets/search_widget.dart';
 
 class ProjectView extends StatefulWidget {
   const ProjectView({Key? key}) : super(key: key);
@@ -17,8 +18,14 @@ class _ProjectViewState extends State<ProjectView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-          Container(
+      // appBar: AppBar(title: const Text('Project View'), actions: [
+      //   IconButton(
+      //       onPressed: () {
+      //         showSearch(context: context, delegate: SearchBar());
+      //       },
+      //       icon: const Icon(Icons.search))
+      // ]),
+      body: Container(
         padding: const EdgeInsets.all(15),
         // children: <Widget>[
         //   const Text(
