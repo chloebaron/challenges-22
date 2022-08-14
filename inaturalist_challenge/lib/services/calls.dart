@@ -6,14 +6,62 @@ import 'dart:convert';
 import '../models/spider_model.dart';
 
 // Empty variables to store the responses to be used in the views
+
+Map searchResponse = {};
+List listSearch = [];
+
+Future<List> getAllPlantsList() async {
+  String url =
+      'https://api.inaturalist.org/v1/observations?introduced=true&native=false&photos=true&place_id=8638&month=7&year=2022&iconic_taxa=Plantae&quality_grade=research&reviewed=true&order=desc&order_by=created_at';
+
+  try {
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      // print(response.body);
+      List list = parseAgents(response.body);
+      return list;
+    } else {
+      throw Exception('Error');
+    }
+  } catch (e) {
+    throw Exception(e.toString());
+  }
+}
+
+
+Future<List> getAllProjectsList() async {
+  String url =
+      "https://api.inaturalist.org/v1/projects?q=bermuda&order_by=recent_posts";
+  try {
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      // print(response.body);
+      List list = parseAgents(response.body);
+      return list;
+    } else {
+      throw Exception('Error');
+    }
+  } catch (e) {
+    throw Exception(e.toString());
+  }
+}
+
+List<dynamic> parseAgents(String responseBody) {
+  searchResponse = json.decode(responseBody);
+  return listSearch = searchResponse['results'];
+}
+
+
+// OLD CALLS FROM PREVIOUS VERSION
+
 Map endemicsResponse = {};
 List listOfEndemics = [];
 
-Map introducedResponse = {};
-List listOfIntroduced = [];
+// Map introducedResponse = {};
+// List listOfIntroduced = [];
 
-Map projectsResponse = {};
-List listOfProjects = [];
+// Map projectsResponse = {};
+// List listOfProjects = [];
 
 // Calls to iNaturalist API to fetch endemic species
 // Each call has the same functions with their own code
@@ -38,41 +86,43 @@ Future<List> getEndemics() async {
   }
 }
 
-Future<List> getIntroduced() async {
-  final http.Response response;
+// Future<List> getIntroduced() async {
+//   final http.Response response;
 
-  // Introduced Species Observed in 2022
-  var url = Uri.parse(
-      'https://api.inaturalist.org/v1/observations?introduced=true&native=false&photos=true&place_id=8638&month=7&year=2022&iconic_taxa=Plantae&quality_grade=research&reviewed=true&order=desc&order_by=created_at');
+//   // Introduced Species Observed in 2022
+//   var url = Uri.parse(
+//       'https://api.inaturalist.org/v1/observations?introduced=true&native=false&photos=true&place_id=8638&month=7&year=2022&iconic_taxa=Plantae&quality_grade=research&reviewed=true&order=desc&order_by=created_at');
 
-  response = await http.get(url);
+//   response = await http.get(url);
 
-  // If the server did return a 200 OK response,
-  // then parse the JSON
-  if (response.statusCode == 200) {
-    introducedResponse = json.decode(response.body);
-    return listOfIntroduced = introducedResponse['results'];
-  } else {
-    throw Exception('Failed to load Reptile information');
-  }
-}
+//   // If the server did return a 200 OK response,
+//   // then parse the JSON
+//   if (response.statusCode == 200) {
+//     introducedResponse = json.decode(response.body);
+//     return listOfIntroduced = introducedResponse['results'];
+//   } else {
+//     throw Exception('Failed to load Reptile information');
+//   }
+// }
 // }
 
-Future<List> getProjects() async {
-  http.Response response;
+// Future<List> getProjects() async {
+//   http.Response response;
 
-  // Bermuda based projects
-  var url = Uri.parse(
-      'https://api.inaturalist.org/v1/projects?q=bermuda&order_by=recent_posts');
+//   // Bermuda based projects
+//   var url = Uri.parse(
+//       'https://api.inaturalist.org/v1/projects?q=bermuda&order_by=recent_posts');
 
-  // If the server did return a 200 OK response,
-  // then parse the JSON
-  response = await http.get(url);
+//   // If the server did return a 200 OK response,
+//   // then parse the JSON
+//   response = await http.get(url);
 
-  if (response.statusCode == 200) {
-    projectsResponse = json.decode(response.body);
-    return listOfProjects = projectsResponse['results'];
-  } else {
-    throw Exception('Failed to load Reptile information');
-  }
-}
+//   if (response.statusCode == 200) {
+//     projectsResponse = json.decode(response.body);
+//     return listOfProjects = projectsResponse['results'];
+//   } else {
+//     throw Exception('Failed to load Reptile information');
+//   }
+// }
+
+  
