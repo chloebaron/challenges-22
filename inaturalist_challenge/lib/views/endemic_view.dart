@@ -11,7 +11,6 @@ class EndemicView extends StatefulWidget {
 }
 
 // Stateful widget used
-
 class _EndemicViewState extends State<EndemicView> {
   @override
   Widget build(BuildContext context) {
@@ -19,36 +18,37 @@ class _EndemicViewState extends State<EndemicView> {
     return endemicsResponse['results'] == null
         ? Container()
         : Scaffold(
-            body: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    // NavButtons(),
-                    const Text(
-                      "Endemic Species Observed in July 2022",
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'Observation Count: ${endemicsResponse['total_results'].toString()}',
-                      style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    FutureBuilder(
-                        future: getEndemics(),
-                        builder: (context, snapshot) {
-                          return ListView.builder(
-                            itemCount: listOfEndemics.length,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return listOfEndemics[index]['species_guess'] ==
-                                      null
-                                  ? Container()
-                                  : Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 10),
+            body: Container(
+              // child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child:
+                  //  Column(
+                  //   crossAxisAlignment: CrossAxisAlignment.start,
+                  //   children: <Widget>[
+                  // NavButtons(),
+                  // const Text(
+                  //   "Endemic Species Observed in July 2022",
+                  //   style:
+                  //       TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  // ),
+                  // Text(
+                  //   'Observation Count: ${endemicsResponse['total_results'].toString()}',
+                  //   style: const TextStyle(
+                  //       fontSize: 18, fontWeight: FontWeight.bold),
+                  // ),
+                  FutureBuilder(
+                      future: getEndemics(),
+                      builder: (context, snapshot) {
+                        return ListView.builder(
+                          itemCount: listOfEndemics.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return listOfEndemics[index]['species_guess'] ==
+                                    null
+                                ? Container()
+                                : Card(
+                                    child: Container(
+                                      padding: const EdgeInsets.all(10),
                                       // height: 100,
                                       child: Column(
                                         crossAxisAlignment:
@@ -56,7 +56,7 @@ class _EndemicViewState extends State<EndemicView> {
                                         children: <Widget>[
                                           // Image.network(listOfEndemics[index]['images']['url']),
                                           Text(
-                                              "Common Name: ${listOfEndemics[index]['species_guess']}",
+                                              "${listOfEndemics[index]['species_guess']}",
                                               style: const TextStyle(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.bold)),
@@ -78,13 +78,11 @@ class _EndemicViewState extends State<EndemicView> {
                                                   fontSize: 16)),
                                         ],
                                       ),
-                                    );
-                            },
-                          );
-                        }),
-                  ],
-                ),
-              ),
+                                    ),
+                                  );
+                          },
+                        );
+                      }),
             ),
           );
   }

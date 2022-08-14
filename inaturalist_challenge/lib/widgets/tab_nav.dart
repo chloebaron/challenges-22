@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:inaturalist_challenge/services/calls.dart';
 import 'package:inaturalist_challenge/views/about.dart';
+import 'package:inaturalist_challenge/views/plants_search.dart';
 import 'package:inaturalist_challenge/views/project_view.dart';
 import 'package:inaturalist_challenge/views/introduced_view.dart';
 import 'package:inaturalist_challenge/views/endemic_view.dart';
-import 'package:inaturalist_challenge/widgets/search_widget.dart';
+import 'package:inaturalist_challenge/views/project_search.dart';
 
 class TabNav extends StatefulWidget {
   const TabNav({Key? key}) : super(key: key);
@@ -18,16 +19,16 @@ class _TabNavState extends State<TabNav> with SingleTickerProviderStateMixin {
   List<Tab> myTabs = <Tab>[
     // Tab(text: 'About'),
     const Tab(text: 'Projects'),
-    const Tab(text: 'Endemic'),
     const Tab(text: 'Introduced'),
+    const Tab(text: 'Endemic'),
   ];
 
   @override
   void initState() {
     // const AboutView();
-    getProjects();
+    // getProjects();
     getEndemics();
-    getIntroduced();
+    // getIntroduced();
     super.initState();
     _tabController = TabController(vsync: this, length: myTabs.length);
   }
@@ -57,11 +58,9 @@ class _TabNavState extends State<TabNav> with SingleTickerProviderStateMixin {
           ),
         ),
         body: TabBarView(controller: _tabController, children: [
-          // COMMENTED TO TEST SEARCH TAB
-          // ProjectView(),
           ProjectsSearch(),
+          PlantsSearch(),
           EndemicView(),
-          IntroducedView(),
         ]),
       ),
     );

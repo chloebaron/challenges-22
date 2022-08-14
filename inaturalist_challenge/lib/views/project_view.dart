@@ -4,7 +4,7 @@ import 'dart:convert';
 
 import 'package:inaturalist_challenge/services/calls.dart';
 import 'package:inaturalist_challenge/views/endemic_view.dart';
-import 'package:inaturalist_challenge/widgets/search_widget.dart';
+import 'package:inaturalist_challenge/views/project_search.dart';
 
 class ProjectView extends StatefulWidget {
   const ProjectView({Key? key}) : super(key: key);
