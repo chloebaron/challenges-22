@@ -29,13 +29,11 @@ class ProjectsSearchState extends State<ProjectsSearch> {
     });
   }
 
-  //Main Widget
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          //Search Bar to List of typed Subject
           Container(
             padding: EdgeInsets.all(15),
             child: TextField(
@@ -117,7 +115,6 @@ class ProjectsSearchState extends State<ProjectsSearch> {
   }
 }
 
-//Declare Project class for json data or parameters of json string/data
 // class Project {
 //   String title;
 //   String description;
@@ -126,7 +123,7 @@ class ProjectsSearchState extends State<ProjectsSearch> {
 //     required this.description,
 //   });
 
-//   factory Project.fromJson(Map<dynamic, dynamic> json) {
+//   factory Project.fromJson(Map<String, dynamic> json) {
 //     return Project(
 //       title: json['title'],
 //       description: json['description'],

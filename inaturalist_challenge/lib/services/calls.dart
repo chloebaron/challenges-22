@@ -4,11 +4,15 @@ import 'package:http/http.dart';
 import 'dart:convert';
 
 import '../models/spider_model.dart';
+import '../views/project_search.dart';
 
 // Empty variables to store the responses to be used in the views
 
-Map searchResponse = {};
-List listSearch = [];
+Map plantsResponse = {};
+List listPlants = [];
+
+Map projectsResponse = {};
+List listProjects = [];
 
 Future<List> getAllPlantsList() async {
   String url =
@@ -17,9 +21,9 @@ Future<List> getAllPlantsList() async {
   try {
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
-      // print(response.body);
-      List list = parseAgents(response.body);
-      return list;
+      plantsResponse = json.decode(response.body);
+      // Stores the 'results' list in a list to be displayed
+      return listPlants = plantsResponse['results'];
     } else {
       throw Exception('Error');
     }
@@ -27,7 +31,6 @@ Future<List> getAllPlantsList() async {
     throw Exception(e.toString());
   }
 }
-
 
 Future<List> getAllProjectsList() async {
   String url =
@@ -35,9 +38,9 @@ Future<List> getAllProjectsList() async {
   try {
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
-      // print(response.body);
-      List list = parseAgents(response.body);
-      return list;
+      projectsResponse = json.decode(response.body);
+      // Stores the 'results' list in a list to be displayed
+      return listProjects = projectsResponse['results'];
     } else {
       throw Exception('Error');
     }
@@ -46,11 +49,11 @@ Future<List> getAllProjectsList() async {
   }
 }
 
-List<dynamic> parseAgents(String responseBody) {
-  searchResponse = json.decode(responseBody);
-  return listSearch = searchResponse['results'];
-}
-
+// OLD Function used to decode json list. Commented out to test.
+// List<dynamic> parseResults(String responseBody) {
+//   searchResponse = json.decode(responseBody);
+//   return listSearch = searchResponse['results'];
+// }
 
 // OLD CALLS FROM PREVIOUS VERSION
 
@@ -124,5 +127,3 @@ Future<List> getEndemics() async {
 //     throw Exception('Failed to load Reptile information');
 //   }
 // }
-
-  

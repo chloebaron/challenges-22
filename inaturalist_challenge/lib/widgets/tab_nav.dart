@@ -25,10 +25,7 @@ class _TabNavState extends State<TabNav> with SingleTickerProviderStateMixin {
 
   @override
   void initState() {
-    // const AboutView();
-    // getProjects();
     getEndemics();
-    // getIntroduced();
     super.initState();
     _tabController = TabController(vsync: this, length: myTabs.length);
   }

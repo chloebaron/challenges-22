@@ -7,8 +7,6 @@ import 'package:http/http.dart' as http;
 
 import '../services/calls.dart';
 
-// Map searchResponse = {};
-// List listSearch = [];
 
 class PlantsSearch extends StatefulWidget {
   PlantsSearch() : super();
